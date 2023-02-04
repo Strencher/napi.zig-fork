@@ -23,7 +23,7 @@ pub fn register(comptime f: fn(env, object) anyerror!void) void {
 
       f(e, exports) catch |er| {
         defer std.os.exit(1);
-        std.log.err("failed to register module: {s}", .{er});
+        std.log.err("failed to register module: {s}", .{@errorName(er)});
       };
 
       return exports.raw;
